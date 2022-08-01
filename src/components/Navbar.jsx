@@ -40,7 +40,7 @@ function Navbar() {
               width='36px'
               height='36px'
             />
-            <p className={pathMatchRoute('/profile' ? 'navbarListItemNameActive' : 'navbarListItemName')}>Explore</p>
+            <p className={pathMatchRoute('/profile' ? 'navbarListItemNameActive' : 'navbarListItemName')}>Profile</p>
           </li>
         </ul>
       </nav>
