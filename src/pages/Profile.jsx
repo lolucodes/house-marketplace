@@ -4,6 +4,8 @@ import { getAuth, updateProfile } from 'firebase/auth'
 import { db } from '../firebase.config'
 import { updateDoc, doc } from 'firebase/firestore'
 import { toast} from 'react-toastify'
+import arrowRight from '../assets/svg/keyboardArrowRightIcon.svg'
+import homeIcon from '../assets/svg/homeIcon.svg'
 
 
 function Profile() {
@@ -50,31 +52,56 @@ function Profile() {
     }))
   }
   
-  return <div className='profile'>
-    <header className="profileHeader">
-      <p className="pageheader">My Profile</p>
-      <button type='button'className="logOut" onClick={onLogout}>Logout</button>
-    </header>
-    <main>
-      <div className="profileDetailsHeader">
-        <p className="profileDetailstext">Personal Details</p>
-        <p className="changePersonalDetails" 
-        onClick={() => { 
-          changeDetails && onSubmit() 
-          setChangeDetails((prevState) => !prevState)
-          }}>
-          {changeDetails ? 'done' : 'change'}</p>
-      </div>
-      <div className="profileCard">
-        <form>
-          <input type="text" id="name" className={!changeDetails ? 'profileName' : 'profileNameActive'} disabled={!changeDetails} value={name} onChange={onChange}/>
-          <br />
-          <input type="text" id="email" className={!changeDetails ? 'profileEmail' : 'profileEmailActive'} disabled={!changeDetails} value={email} onChange={onChange}/>
-        </form>
-      </div>
-    </main>
-    
-  </div>
+  return (
+    <div className='profile'>
+      <header className='profileHeader'>
+        <p className='pageheader'>My Profile</p>
+        <button type='button' className='logOut' onClick={onLogout}>
+          Logout
+        </button>
+      </header>
+      <main>
+        <div className='profileDetailsHeader'>
+          <p className='profileDetailstext'>Personal Details</p>
+          <p
+            className='changePersonalDetails'
+            onClick={() => {
+              changeDetails && onSubmit()
+              setChangeDetails((prevState) => !prevState)
+            }}
+          >
+            {changeDetails ? 'done' : 'change'}
+          </p>
+        </div>
+        <div className='profileCard'>
+          <form>
+            <input
+              type='text'
+              id='name'
+              className={!changeDetails ? 'profileName' : 'profileNameActive'}
+              disabled={!changeDetails}
+              value={name}
+              onChange={onChange}
+            />
+            <br />
+            <input
+              type='text'
+              id='email'
+              className={!changeDetails ? 'profileEmail' : 'profileEmailActive'}
+              disabled={!changeDetails}
+              value={email}
+              onChange={onChange}
+            />
+          </form>
+        </div>
+        <Link to='/create-listing' className='createListing'>
+          <img src={homeIcon} alt="home" />
+          <p>Sell or rent your Home</p>
+          <img src={arrowRight} alt="arrow right" />
+        </Link>
+      </main>
+    </div>
+  )
 }
 
 export default Profile
